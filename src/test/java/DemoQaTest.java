@@ -1,31 +1,25 @@
 import com.codeborne.selenide.Configuration;
-import jdk.dynalink.beans.StaticClass;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static java.awt.SystemColor.text;
 
-
-public class demoQa {
+public class DemoQaTest {
 
     @BeforeAll
-    static void BeforeAll(){
+    static void beforeAll(){
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
     }
 
     @Test
     void mainTest(){
-        File file = new File("src/test/testData/dude.png");
+//        File file = new File("src/test/testData/dude.png");
         open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         // Заполнение регистрационной формы
         $("#firstName").setValue("Mark");
         $("#lastName").setValue("Avrelius");
@@ -41,7 +35,7 @@ public class demoQa {
         $$("#react-select-2-option-0").findBy(text("English")).click();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#hobbiesWrapper").$(byText("Music")).click();
-        $("input.form-control-file").uploadFile(file);
+        $("#uploadPicture").uploadFromClasspath("dude.png");
         $("textarea#currentAddress").scrollTo().click();
         $("textarea#currentAddress").setValue("Ватутина 4к1");
         $("#state").scrollTo().click();
