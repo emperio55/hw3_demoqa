@@ -1,3 +1,5 @@
+package tests;
+
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,7 +17,6 @@ public class DemoQaTest {
 
     @Test
     void mainTest(){
-//        File file = new File("src/test/testData/dude.png");
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
@@ -55,5 +56,25 @@ public class DemoQaTest {
         $(".table-responsive").$(byText("Picture")).parent().shouldHave(text("dude.png"));
         $(".table-responsive").$(byText("Address")).parent().shouldHave(text("Ватутина 4к1"));
         $(".table-responsive").$(byText("State and City")).parent().shouldHave(text("Rajasthan Jaipur"));
+    }
+
+    @Test
+    void checkOnlyRequeredFields(){
+        open("/automation-practice-form");
+        $("#firstName").setValue("Mark");
+        $("#lastName").setValue("Avrelius");
+        $("#genterWrapper").$(byText("Male")).click();
+        $("#userNumber").setValue("9774599362");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").$(byText("January")).click();
+        $(".react-datepicker__year-select").$(byText("1991")).click();
+        $(".react-datepicker__day--011").click();
+        $("button#submit").scrollTo();
+        $("button#submit").click();
+
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Mark Avrelius"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("9774599362"));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text("11 January,1991"));
     }
 }
