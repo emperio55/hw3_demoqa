@@ -9,6 +9,7 @@ public class PageObjectsFormTest extends TestBase {
     @Test
     void fillFormTest(){
         registrationPage.openPage()
+                .cleanBannersOnPage()
                 .setFirsName("Mark")
                 .setLastName("Avrelii")
                 .setUserEmail("markhero@gmail.com")
@@ -35,8 +36,9 @@ public class PageObjectsFormTest extends TestBase {
     }
 
     @Test
-    void checkOnlyRequeredFields(){
+    void checkOnlyRequeredFieldsTest(){
         registrationPage.openPage()
+                .cleanBannersOnPage()
                 .setFirsName("Mark")
                 .setLastName("Avrelii")
                 .setUserGender("Male")
@@ -51,8 +53,9 @@ public class PageObjectsFormTest extends TestBase {
     }
 
     @Test
-    void checkEmailFieldWithoutDomain(){
+    void checkEmailFieldWithoutDomainTest(){
         registrationPage.openPage()
+                .cleanBannersOnPage()
                 .setFirsName("Mark")
                 .setLastName("Avrelii")
                 .setUserEmail("markhero")

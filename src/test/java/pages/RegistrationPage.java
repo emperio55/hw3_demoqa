@@ -13,31 +13,34 @@ public class RegistrationPage {
     TableResultComponent tableResultComponent = new TableResultComponent();
 
 
-    private static SelenideElement firstNameInput  = $("#firstName");
-    private static SelenideElement lastNameInput  =  $("#lastName");
-    private static SelenideElement userEmail = $("#userEmail");
-    private static SelenideElement userGender =   $("#genterWrapper");
-    private static SelenideElement userPhone =   $("#userNumber");
-    private static SelenideElement birthInput =   $("#dateOfBirthInput");
-    private static SelenideElement userSubjects =   $("#subjectsContainer");
-    private static SelenideElement userSubjectsInput =   $("#subjectsInput");
-    private static SelenideElement userHobbies =   $("#hobbiesWrapper");
-    private static SelenideElement selectPicture =   $("#uploadPicture");
-    private static SelenideElement addressInput =   $("textarea#currentAddress");
-    private static SelenideElement setState =   $("#state");
-    private static SelenideElement chooseStateOfList =   $(".css-26l3qy-menu");
-    private static SelenideElement setCity =   $("#city");
-    private static SelenideElement chooseCityOfList =   $(".css-26l3qy-menu");
-    private static SelenideElement submitButton =   $("button#submit");
-    private static String ERROR_BORDER_COLOR = "rgb(220, 53, 69)";
+    private final SelenideElement firstNameInput  = $("#firstName");
+    private final SelenideElement lastNameInput  =  $("#lastName");
+    private final SelenideElement userEmail = $("#userEmail");
+    private final SelenideElement userGender =   $("#genterWrapper");
+    private final SelenideElement birthInput =   $("#dateOfBirthInput");
+    private final SelenideElement userPhone =   $("#userNumber");
+    private final SelenideElement userSubjects =   $("#subjectsContainer");
+    private final SelenideElement userSubjectsInput =   $("#subjectsInput");
+    private final SelenideElement userHobbies =   $("#hobbiesWrapper");
+    private final SelenideElement selectPicture =   $("#uploadPicture");
+    private final SelenideElement addressInput =   $("textarea#currentAddress");
+    private final SelenideElement setState =   $("#state");
+    private final SelenideElement chooseStateOfList =   $(".css-26l3qy-menu");
+    private final SelenideElement setCity =   $("#city");
+    private final SelenideElement chooseCityOfList =   $(".css-26l3qy-menu");
+    private final SelenideElement submitButton =   $("button#submit");
+    private final String ERROR_BORDER_COLOR = "rgb(220, 53, 69)";
 
     CalendarComponent calendarComponent = new CalendarComponent();
     public RegistrationPage openPage(){
         open("/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
         return this;
     }
+    public RegistrationPage cleanBannersOnPage(){
+            executeJavaScript("$('#fixedban').remove()");
+            executeJavaScript("$('footer').remove()");
+            return this;
+        }
 
     public RegistrationPage setFirsName(String value){
         firstNameInput.setValue(value);
