@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import static tests.TestData.*;
 
 public class PageObjectsFormTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
@@ -10,29 +11,29 @@ public class PageObjectsFormTest extends TestBase {
     void fillFormTest(){
         registrationPage.openPage()
                 .cleanBannersOnPage()
-                .setFirsName("Mark")
-                .setLastName("Avrelii")
-                .setUserEmail("markhero@gmail.com")
-                .setUserGender("Male")
-                .setUserPhone("9774599362")
-                .setDateOfBirth("11","January", "1991")
-                .setUserSubjects("English")
-                .chooseHobbies("Sports")
-                .uploadFile("dude.png")
-                .setCurrentAddress("Ватутина 4к1")
-                .setStateAndCity("Rajasthan","Jaipur")
+                .setFirsName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setUserGender(userGender)
+                .setUserPhone(userPhone)
+                .setDateOfBirth(userDayBday,userMonthBday, userYearBday)
+                .setUserSubjects(userSubject)
+                .chooseHobbies(userHobbies)
+                .uploadFile(userFile)
+                .setCurrentAddress(streetAddress)
+                .setStateAndCity(userState, userCity)
                 .clickSubmitButton()
                 .checkTableResultVisible()
-                .checkResult("Student Name", "Mark Avrelii")
-                .checkResult("Student Email", "markhero@gmail.com")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "9774599362")
-                .checkResult("Date of Birth", "11 January,1991")
-                .checkResult("Subjects", "English")
-                .checkResult("Hobbies", "Sport")
-                .checkResult("Picture", "dude.png")
-                .checkResult("Address", "Ватутина 4к1")
-                .checkResult("State and City", "Rajasthan Jaipur");
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Gender", userGender)
+                .checkResult("Mobile", userPhone )
+                .checkResult("Date of Birth", userDayBday + " " + userMonthBday + "," +userYearBday)
+                .checkResult("Subjects", userSubject)
+                .checkResult("Hobbies", userHobbies)
+                .checkResult("Picture", userFile)
+                .checkResult("Address", streetAddress)
+                .checkResult("State and City", userState + " " + userCity);
     }
 
     @Test
@@ -43,7 +44,7 @@ public class PageObjectsFormTest extends TestBase {
                 .setLastName("Avrelii")
                 .setUserGender("Male")
                 .setUserPhone("9774599362")
-                .setDateOfBirth("11","January", "1991")
+                .setDateOfBirth(userDayBday,userMonthBday, userYearBday)
                 .clickSubmitButton()
                 .checkTableResultVisible()
                 .checkResult("Student Name", "Mark Avrelii")
@@ -61,7 +62,7 @@ public class PageObjectsFormTest extends TestBase {
                 .setUserEmail("markhero")
                 .setUserGender("Male")
                 .setUserPhone("9774599362")
-                .setDateOfBirth("11","January", "1991")
+                .setDateOfBirth(userDayBday,userMonthBday, userYearBday)
                 .clickSubmitButton()
                 .checkTableResultUnvisible()
                 .checkValidationEmailField();

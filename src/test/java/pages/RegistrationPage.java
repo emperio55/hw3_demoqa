@@ -67,16 +67,16 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirth(String day, String month, String year) {
+    public RegistrationPage setDateOfBirth(int day, String month, int year) {
         birthInput.click();
-        calendarComponent.setDate(day, month, year);
+        calendarComponent.setDate(day, month, String.valueOf(year));
         return this;
     }
 
     public RegistrationPage setUserSubjects(String value) {
         userSubjects.click();
         userSubjectsInput.setValue(value);
-        $$("#react-select-2-option-0").findBy(text("English")).click();
+        $$("#react-select-2-option-0").findBy(text(value)).click();
         return this;
     }
 
