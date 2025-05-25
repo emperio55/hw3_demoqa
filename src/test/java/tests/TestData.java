@@ -13,10 +13,6 @@ public class TestData {
     static String[] hobbies = {"Sports", "Reading", "Music"};
     static String[] subject = {"English", "Maths", "Biology","Computer Science","Economics"};
     static String[] state = {"NCR", "Uttar Pradesh", "Haryana","Rajasthan"};
-    static String[] cityOfNCR = {"Delhi","Gurgaon","Noida"};
-    static String[] cityOfUttarPradesh = {"Agra","Lucknow","Merrut"};
-    static String[] cityOfHaryana = {"Karnal","Panipat"};
-    static String[] cityOfRajasthan = {"Jaipur","Jaiselmer"};
     static String[] months = {"January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"};
 
@@ -57,8 +53,7 @@ public class TestData {
                 return faker.options().option("Jaipur","Jaiselmer");
             }
             default ->
-                System.out.println("Нет в списке нужного города");
+                    throw new IllegalStateException("В списке нет указанного города!");
         }
-        return state;
     }
 }
